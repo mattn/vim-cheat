@@ -1,9 +1,9 @@
 function! cheat#list(a, l, p) abort
-  return filter(split(system("cheat list"), "\n"), "stridx(v:val, a:a)==0")
+  return filter(split(system(get(g:, "cheat_list_command", "cheat list")), "\n"), "stridx(v:val, a:a)==0")
 endfunction
 
 function! cheat#show(c) abort
-  let ret = system("cheat show " . shellescape(a:c))
+  let ret = system(printf(get(g:, "cheat_show_command", "cheat show %s"), shellescape(a:c)))
   if v:shell_error
     return
   endif
