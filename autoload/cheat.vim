@@ -20,7 +20,8 @@ function! cheat#show(c) abort
     setlocal noswapfile
     setlocal winfixheight
     if get(g:, "cheat_autohide")
-      autocmd BufLeave <buffer> exe bnr . "bdelete!" 
+      let bnr = bufnr("__CHEAT__")
+      exe "autocmd BufLeave <buffer> " . bnr . "bdelete!"
     endif
   else
     let wnr = bufwinnr(bnr)
