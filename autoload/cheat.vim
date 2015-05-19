@@ -9,7 +9,7 @@ function! cheat#show(c) abort
   endif
   let bnr = bufnr("__CHEAT__")
   if bnr == -1
-    silent execute get(g:, "cheat_height", "") . "new __CHEAT__"
+    silent exe get(g:, "cheat_height", "") . "new __CHEAT__"
     setlocal filetype=cheat
     setlocal bufhidden=hide
     setlocal buftype=nofile
@@ -30,7 +30,7 @@ function! cheat#show(c) abort
         exe wnr . "wincmd w"
       endif
     else
-      execute get(g:, "cheat_height", "") . "split +buffer" . bnr
+      exe get(g:, "cheat_height", "") . "split +buffer" . bnr
     endif
   endif
   silent! %d _
