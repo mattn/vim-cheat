@@ -3,6 +3,12 @@ function! cheat#list(a, l, p) abort
 endfunction
 
 function! cheat#show(c) abort
+  if a:c == ''
+    if exists(':CtrlP')
+      call ctrlp#init(ctrlp#cheat#id())
+    endif
+    return
+  endif
   let ret = system(printf(get(g:, "cheat_show_command", "cheat show %s"), shellescape(a:c)))
   if v:shell_error
     return
