@@ -9,6 +9,19 @@ function! cheat#show(b, c) abort
     endif
     return
   endif
+  if a:b != ''
+    try
+      for d in webapi#json#decode(join(readfile(expand('~/.cheatrc')), "\n"))['cheatdirs']
+        let p = d . '/' . a:c
+		echo p
+        if filereadable(p)
+          exec "split" p
+          return
+        endif
+      endfor
+    catch
+    endtry
+  endif
   let ret = system(printf(get(g:, "cheat_show_command", "cheat show %s"), shellescape(a:c)))
   if v:shell_error
     return

@@ -1,1 +1,1 @@
-command! -nargs=? -complete=customlist,cheat#list Cheat call cheat#show(<q-args>)
+command! -bang -nargs=? -complete=customlist,cheat#list Cheat call cheat#show('<bang>', <q-args>)
